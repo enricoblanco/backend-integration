@@ -1,0 +1,45 @@
+POST http://localhost:3000/api/restaurant
+Content-Type: application/json
+
+{
+    "name": "Restaurant 1",
+    "desc": "Description 1",
+    "address": "Address 1",
+    "phone": "1234567890",
+    "email": "restaurant@gmail.com",
+    "cuisine": "Cousine 1",
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Frestaurant&psig=AOvVaw0QZ2X0Z3Q4Q4Q4Q4Q4Q4Q4&ust=1629789858662000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjQ4ZqHgvICFQAAAAAdAAAAABAD",
+    "rating": 4.5,
+    "price-range": 2,
+    "evaluations": [
+        {
+            "date": "2021-08-24T00:00:00.000Z",
+            "comment": "Comment 1",
+            "rating": 4.5
+        },
+        {
+            "date": "2021-08-24T00:00:00.000Z",
+            "comment": "Comment 2",
+            "rating": 4.5
+        }
+    ],
+    "users_visited": [
+        {
+            "username": "username 1",
+            "email": "email 1",
+            "date": "2021-08-24T00:00:00.000Z"
+        },
+        {
+            "username": "Name 2",
+            "email": "email 2",
+            "date": "2021-08-24T00:00:00.000Z"
+        }]
+}
+
+###
+
+GET http://localhost:3000/api/restaurant
+
+###
+
+GET http://localhost:3000/api/restaurant/654a8919ab17210a549f6e23
