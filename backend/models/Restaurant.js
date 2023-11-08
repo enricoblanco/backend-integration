@@ -28,7 +28,7 @@ const restaurantSchema = new Schema({
   },
   rating:  {
     type: Number,
-    required: false,
+    required: true,
   },
   price_range:  {
     type: Number,

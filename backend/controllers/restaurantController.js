@@ -3,12 +3,13 @@ const {Restaurant: RestaurantModel} = require('../models/Restaurant');
 const restaurantController = {
  create: async (req, res) => {
   try {
-    const restaurant ={
+    const restaurant = {
       name: req.body.name,
-      desc : req.body.description,
+      desc : req.body.desc,
       image: req.body.image,
       address: req.body.address,
       cuisine: req.body.cuisine,
+      rating: req.body.rating,
       price_range: req.body.price_range,
     }
 
@@ -63,30 +64,30 @@ const restaurantController = {
   }
  },
 
- update: async(req, res) => {
-  try{
-
+ update: async (req, res) => {
+  try {
     const id = req.params.id;
 
     const restaurant = {
       name: req.body.name,
-      desc : req.body.description,
+      desc : req.body.desc,
       image: req.body.image,
       address: req.body.address,
       cuisine: req.body.cuisine,
+      rating: req.body.rating,
       price_range: req.body.price_range,
     }
 
-    const updateRestaurant = await RestaurantModel.findByIdAndUpdate(id, restaurant);
 
-    if(!updateRestaurant) {
-      res.status(404).json({msg: 'Restaurant not found'});
+    const updatedRestaurant = await RestaurantModel.findByIdAndUpdate(id, restaurant);
+
+    if (!updatedRestaurant) {
+      res.status(404).json({ msg: 'Restaurant not found' });
       return;
     }
 
-    res.status(200).json({updateRestaurant, msg: 'Restaurant updated successfully'});
-  }
-  catch(error) {
+    res.status(200).json({updatedRestaurant, msg: 'Restaurant updated successfully' });
+  } catch (error) {
     console.log(error);
   }
  }
