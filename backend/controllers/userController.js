@@ -8,7 +8,7 @@ const userController = {
     create: async (req, res) => {
         try {
             const user = {
-                username: req.body.username,
+                name: req.body.name,
                 email: req.body.email,
                 password: req.body.password
             }
@@ -23,7 +23,7 @@ const userController = {
             const hashedPassword = await bcrypt.hash(user.password, 10);
 
             const newUser = {
-                username: user.username,
+                name: user.name,
                 email: user.email,
                 password: hashedPassword
             }
@@ -91,7 +91,7 @@ const userController = {
             }
 
             const user = {
-                username: req.body.username,
+                name: req.body.name,
                 email: req.body.email,
                 password: req.body.password
             }

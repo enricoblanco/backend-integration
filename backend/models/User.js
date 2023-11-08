@@ -4,7 +4,7 @@ const { restaurantSchema } = require('./Restaurant');
 const {Schema} = mongoose;
 
 const userSchema = new Schema({
-  username : {
+  name : {
     type: String,
     required: true,
   },
