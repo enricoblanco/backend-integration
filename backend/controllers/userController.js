@@ -1,5 +1,8 @@
+const bcrypt = require('bcryptjs');
+
 const {User : UserModel} = require('../models/User');
 const { Restaurant } = require('../models/Restaurant');
+
 
 const userController = {
     create: async (req, res) => {
@@ -10,7 +13,23 @@ const userController = {
                 password: req.body.password
             }
 
-            const response = await UserModel.create(user);
+            const existingUser = await UserModel.findOne({email: user.email});
+
+            if(existingUser) {
+                res.status(400).json({msg: 'E-mail already exists'});
+                return;
+            }
+            
+            const hashedPassword = await bcrypt.hash(user.password, 10);
+
+            const newUser = {
+                username: user.username,
+                email: user.email,
+                password: hashedPassword
+            }
+
+
+            const response = await UserModel.create(newUser);
 
             res.status(201).json({response, msg: 'User created successfully'});
         } catch (error) {
