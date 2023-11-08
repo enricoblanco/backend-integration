@@ -1,17 +1,58 @@
 'use client'
 
+import React, { useState } from 'react'
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/navigation'
 
 const Signup = () => {
 
+  const [error, setError] = useState(null)
+  const router = useRouter()
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
   const handleSubmit = async (e) => {
+    setError('')
     e.preventDefault()
     const name = e.target[0].value
     const email = e.target[1].value
     const password = e.target[2].value
 
-    console.log({name, email, password})
+    if(!isValidEmail(email)) {
+      setError('Invalid email')
+      return;
+    }
+
+    if(!password || password.length < 8) {
+      setError('Password is invalid')
+      return;
+    }
+    
+    try{
+      const res = await fetch('http://localhost:3000/api/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name, email, password}),
+      });
+     if(res.status === 400){
+        setError('E-mail already exists')
+     }
+     if(res.status === 200){
+        res.status(200).json({ success: true});
+        setError(null)
+        router.push('/login')
+     }
+
+    }
+    catch(err) {
+      console.log(err)
+      setError('Something went wrong', error)
+    }
   }
 
   return(
@@ -46,6 +87,7 @@ const Signup = () => {
               className='p-2 rounded outline-none' 
             /> */}
             <button type='submit' className='p-2 rounded bg-[#4285F4] text-white font-semibold'>Register</button>
+            {error && <p className='text-red-500 text-center'>{error}</p>}
         </form>
         <div className='flex items-center gap-2 mt-4'>
           <hr className='w-full'/>
