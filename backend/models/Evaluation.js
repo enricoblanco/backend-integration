@@ -3,11 +3,16 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const {restaurantSchema} = require('./Restaurant');
+const { userSchema } = require('./User');
 
 const evaluationSchema = new Schema({
-  restaurant : {
-    type: [restaurantSchema],
-    required: false
+  user_id :  {
+    type: String,
+    required: true,
+  },
+  restaurant_id : {
+    type: String,
+    required: true
     },
   rating :  {
     type: Number,

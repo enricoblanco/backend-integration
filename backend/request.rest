@@ -42,6 +42,17 @@ Content-Type: application/json
 
 ###
 
+PUT http://localhost:3000/api/restaurant/add_evaluation/654acf43ac579d6db5029b7e
+Content-Type: application/json
+
+{
+    "user_id": "654ad5bd9f7b7bdeed12dca7",
+    "rating": 2,
+    "comment": "Comment 1"
+}
+
+###
+
 // # User API
 
 POST http://localhost:3000/api/user
@@ -59,7 +70,7 @@ GET http://localhost:3000/api/user
 
 ###
 
-GET http://localhost:3000/api/user/654ad5359f7b7bdeed12dc9e
+GET http://localhost:3000/api/user/654ad5bd9f7b7bdeed12dca7
 
 ###
 
@@ -75,6 +86,41 @@ Content-Type: application/json
     "email": "email.com.br",
     "password": "123456"
 }
+
+###
+
+PUT http://localhost:3000/api/user/visited_restaurant/654ad5bd9f7b7bdeed12dca7
+Content-Type: application/json
+
+{
+    "id_restaurant": "654af1ba6e7ddac51500678f"
+}
+
+###
+
+// # Evaluation API
+
+POST http://localhost:3000/api/evaluation
+Content-Type: application/json
+
+{
+    "user_id":"654ad5bd9f7b7bdeed12dca7",
+    "restaurant_id":"654af1ba6e7ddac51500678f",
+    "rating": 5,
+    "comment": "Comment 1",
+    "date": "2021-08-24T03:00:00.000Z"
+}
+
+###
+
+GET http://localhost:3000/api/evaluation
+
+
+
+
+
+
+
 
 
 

@@ -10,4 +10,9 @@ const userRouter = require('./user');
 
 router.use("/", userRouter);
 
+//Evaluation routes
+const evaluationRouter = require('./evaluation');
+
+router.use("/", evaluationRouter);
+
 module.exports = router;

@@ -22,4 +22,8 @@ router
     .route("/user/:id")
     .put((req, res) => userController.update(req, res))
 
+router
+    .route("/user/visited_restaurant/:id")
+    .put((req, res) => userController.visit_restaurant(req, res))
+
 module.exports = router;

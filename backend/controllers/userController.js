@@ -1,4 +1,5 @@
 const {User : UserModel} = require('../models/User');
+const { Restaurant } = require('../models/Restaurant');
 
 const userController = {
     create: async (req, res) => {
@@ -65,6 +66,11 @@ const userController = {
         try {
             const id = req.params.id;
 
+            if(!id) {
+                res.status(404).json({msg: 'User not found'});
+                return;
+            }
+
             const user = {
                 username: req.body.username,
                 email: req.body.email,
@@ -77,7 +83,35 @@ const userController = {
         } catch (error) {
             console.log(error);
         }
-    }
+    },
+
+    visit_restaurant: async (req, res) => {
+        try {
+            const id = req.params.id;
+            if (!id) {
+                res.status(404).json({ msg: 'User not found' });
+                return;
+            }
+    
+            const id_restaurant = req.body.id_restaurant;
+    
+            // Primeiro, encontre o restaurante pelo seu ID
+            const restaurant = await Restaurant.findById(id_restaurant);
+    
+            if (!restaurant) {
+                res.status(404).json({ msg: 'Restaurant not found' });
+                return;
+            }
+    
+            // Agora, atualize o usuário para adicionar o restaurante visitado
+            const updatedUser = await UserModel.findByIdAndUpdate(id, { $push: { visited_restaurants: restaurant } }, { new: true });
+    
+            res.status(200).json({ updatedUser, msg: 'Restaurant added to visited list successfully' });
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    
 }
 
 module.exports = userController;

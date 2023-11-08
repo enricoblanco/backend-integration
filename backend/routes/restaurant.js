@@ -22,4 +22,8 @@ router
   .route("/restaurant/:id")
   .put((req, res) => restaurantController.update(req, res))
 
+router
+  .route("/restaurant/add_evaluation/:id")
+  .put((req, res) => restaurantController.add_evaluation(req, res))
+
 module.exports = router;

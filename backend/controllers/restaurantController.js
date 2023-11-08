@@ -90,6 +90,29 @@ const restaurantController = {
   } catch (error) {
     console.log(error);
   }
+ },
+
+ add_evaluation: async (req, res) => {
+  try {
+    const id_restaurant = req.params.id;
+
+    const evaluation = {
+     id_evaluation: req.body.id_evaluation,
+    }
+
+    const restaurant = await RestaurantModel.findById(id_restaurant);
+
+    if (!restaurant) {
+      res.status(404).json({ msg: 'Restaurant not found' });
+      return;
+    }
+
+    const updatedRestaurant = await RestaurantModel.findByIdAndUpdate(id_restaurant, { $push: { evaluations: evaluation } }, { new: true });
+
+    res.status(200).json({updatedRestaurant, msg: 'Evaluation added successfully' });
+  } catch (error) {
+    console.log(error);
+  }
  }
 }   
 

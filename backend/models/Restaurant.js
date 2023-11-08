@@ -34,6 +34,10 @@ const restaurantSchema = new Schema({
     type: Number,
     required: false,
   },
+  evaluations: {
+    type: [evaluationSchema],
+    required: false
+  },
 }, { timestamps: true });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
