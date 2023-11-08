@@ -107,6 +107,20 @@ const evaluationController = {
                 comment: req.body.comment
             }
 
+            user = await UserModel.findById(req.body.user_id);
+
+            if(!user){
+                res.status(404).json({msg: 'User not found'});
+                return;
+            }
+
+            restaurant  = await RestaurantModel.findById(req.body.restaurant_id);
+
+            if(!restaurant){
+                res.status(404).json({msg: 'Restaurant not found'});
+                return;
+            }
+
             const updatedEvaluation = await EvaluationModel.findByIdAndUpdate(id, evaluation, {new: true});
 
             res.status(200).json({updatedEvaluation, msg: 'Evaluation updated successfully'});

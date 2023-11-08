@@ -1,4 +1,5 @@
 const {Restaurant: RestaurantModel} = require('../models/Restaurant');
+const {User: UserModel} = require('../models/User');
 
 const restaurantController = {
  create: async (req, res) => {
@@ -53,6 +54,13 @@ const restaurantController = {
     if(!restaurant) {
       res.status(404).json({msg: 'Restaurant not found'});
       return;
+    }
+
+    const users = await UserModel.find({ visited_restaurants: restaurant });
+
+    for(const user of users) {
+     user.visited_restaurants.pull(restaurant);
+      await user.save();
     }
 
     const deletedRestaurant = await RestaurantModel.findByIdAndDelete(req.params.id);

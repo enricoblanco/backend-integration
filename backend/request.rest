@@ -4,8 +4,8 @@ POST http://localhost:3000/api/restaurant
 Content-Type: application/json
 
 {
-    "name": "Restaurant 2",
-    "desc": "Description 2",
+    "name": "Restaurant 5",
+    "desc": "Description 5",
     "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Frestaurant&psig=AOvVaw0QZ2X0Z3Q4Q4Q4Q4Q4Q4Q4&ust=1629789858662000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjQ4ZqHgvICFQAAAAAdAAAAABAD",
     "address": "Address 2",
     "cuisine": "Cousine 2",
@@ -23,7 +23,7 @@ GET http://localhost:3000/api/restaurant/654a8919ab17210a549f6e23
 
 ###
 
-DELETE http://localhost:3000/api/restaurant/654a8919ab17210a549f6e23
+DELETE http://localhost:3000/api/restaurant/654b9025751ca1ffb5d7d061
 
 ###
 
@@ -59,8 +59,8 @@ POST http://localhost:3000/api/user
 Content-Type: application/json
 
 {
-    "username": "User 1",
-    "email": "teste@gmail.com",
+    "username": "User 3",
+    "email": "teste3@gmail.com",
     "password": "123456"
 }
 
@@ -89,11 +89,11 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/api/user/visited_restaurant/654ad5bd9f7b7bdeed12dca7
+PUT http://localhost:3000/api/user/visited_restaurant/654b92a66fbfc0538a2928c0
 Content-Type: application/json
 
 {
-    "id_restaurant": "654af1ba6e7ddac51500678f"
+    "id_restaurant": "654b92cf6fbfc0538a2928c5"
 }
 
 ###
@@ -114,6 +114,28 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3000/api/evaluation
+
+###
+
+GET http://localhost:3000/api/evaluation/654af09d55aa1c8fbbd5803f
+
+###
+
+DELETE http://localhost:3000/api/evaluation/654af09d55aa1c8fbbd5803f
+
+###
+
+PUT http://localhost:3000/api/evaluation/654af1cb6e7ddac515006795
+Content-Type: application/json
+
+{
+    "user_id":"654ad5bd9f7b7bdeed12dca7",
+    "restaurant_id":"654af1ba6e7ddac51500678f",
+    "rating": 2,
+    "comment": "TESTE224"
+}
+
+
 
 
 
