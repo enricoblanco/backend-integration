@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { evaluationSchema } = require('./Evaluation');
-const { userSchema } = require("./User");
 
 
 const { Schema } = mongoose;
@@ -40,6 +39,6 @@ const restaurantSchema = new Schema({
   },
 }, { timestamps: true });
 
-const Restaurant = mongoose.model('Restaurant', restaurantSchema);
+const Restaurant = mongoose.models.Restaurant || mongoose.model('Restaurant', restaurantSchema);
 
 module.exports = { Restaurant, restaurantSchema };

@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 
 const {Schema} = mongoose;
 
-const {restaurantSchema} = require('./Restaurant');
-const { userSchema } = require('./User');
 
 const evaluationSchema = new Schema({
   user_id :  {
@@ -32,6 +30,6 @@ const evaluationSchema = new Schema({
 
 
 
-const Evaluation = mongoose.model('Evaluation', evaluationSchema);
+const Evaluation = mongoose.models.Evaluation || mongoose.model('Evaluation', evaluationSchema);
 
 module.exports = {Evaluation, evaluationSchema};

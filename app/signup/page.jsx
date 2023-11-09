@@ -31,27 +31,26 @@ const Signup = () => {
       return;
     }
     
-    try{
+    try {
       const res = await fetch('http://localhost:3000/api/user', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({name, email, password}),
+        body: JSON.stringify({ name, email, password }),
       });
-     if(res.status === 400){
-        setError('E-mail already exists')
-     }
-     if(res.status === 200){
-        res.status(200).json({ success: true});
-        setError(null)
-        router.push('/login')
-     }
-
-    }
-    catch(err) {
-      console.log(err)
-      setError('Something went wrong', error)
+    
+      if (res.status === 400) {
+        setError('E-mail already exists');
+      } else if (res.status === 201) {
+        setError(null);
+        router.push('/login');
+      } else {
+        setError('Unexpected response status: ' + res.status);
+      }
+    } catch (err) {
+      console.log(err);
+      setError('Something went wrong');
     }
   }
 
