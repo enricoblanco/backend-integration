@@ -7,6 +7,10 @@ const { Restaurant } = require('../models/Restaurant');
 const userController = {
     create: async (req, res) => {
         try {
+
+
+            await connect();
+
             const user = {
                 name: req.body.name,
                 email: req.body.email,
@@ -39,6 +43,9 @@ const userController = {
 
     getAll: async (req, res) => {
         try {
+
+            await connect();
+
             const users = await UserModel.find({});
 
             res.status(200).json({users});
@@ -49,6 +56,9 @@ const userController = {
 
     get: async(req, res) => {
         try {
+
+            await connect();
+
             const user = await UserModel.findById(req.params.id);
 
             if(!user) {
@@ -64,6 +74,8 @@ const userController = {
 
     delete: async(req, res) => {
         try {
+
+            await connect();
 
             const user = await UserModel.findById(req.params.id);
 
@@ -83,6 +95,9 @@ const userController = {
 
     update: async (req, res) => {
         try {
+
+            await connect();
+
             const id = req.params.id;
 
             if(!id) {
@@ -106,6 +121,9 @@ const userController = {
 
     visit_restaurant: async (req, res) => {
         try {
+
+            await connect();
+
             const id = req.params.id;
             if (!id) {
                 res.status(404).json({ msg: 'User not found' });

@@ -3,9 +3,14 @@ const {Evaluation : EvaluationModel} = require('../models/Evaluation');
 const {Restaurant: RestaurantModel} = require('../models/Restaurant');
 const {User: UserModel} = require('../models/User');
 
+const connect = require('../db/connection');
+
 const evaluationController = {
     create: async(req, res) => {
         try {
+
+            await connect();
+
             const evaluation = {
                 user_id: req.body.user_id,
                 restaurant_id: req.body.restaurant_id,
@@ -41,6 +46,9 @@ const evaluationController = {
 
     getAll: async(req, res) => {
         try {
+
+            await connect();
+
             const evaluations = await EvaluationModel.find({});
 
             res.status(200).json({evaluations});
@@ -51,6 +59,9 @@ const evaluationController = {
 
     getByUser: async(req, res) => {
         try {
+
+            await connect();
+
             const evaluations = await EvaluationModel.find({user_id: req.params.user_id});
 
             res.status(200).json({evaluations});
@@ -61,6 +72,9 @@ const evaluationController = {
 
     get: async(req, res)=>{
         try {
+
+            await connect();
+
             const evaluation = await EvaluationModel.findById(req.params.id);
 
             if(!evaluation){
@@ -76,6 +90,9 @@ const evaluationController = {
 
     delete: async(req, res) => {
         try {
+
+            await connect();
+
             const evaluation = await EvaluationModel.findById(req.params.id);
 
             if(!evaluation){
@@ -93,6 +110,9 @@ const evaluationController = {
 
     update: async(req, res) => {
         try {
+
+            await connect();
+
             const id = req.params.id;
 
             if(!id){

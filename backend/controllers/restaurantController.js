@@ -4,6 +4,9 @@ const {User: UserModel} = require('../models/User');
 const restaurantController = {
  create: async (req, res) => {
   try {
+
+    await connect();
+
     const restaurant = {
       name: req.body.name,
       desc : req.body.desc,
@@ -24,6 +27,9 @@ const restaurantController = {
 
  getAll: async (req, res) => {
   try {
+
+    await connect();
+
     const restaurants = await RestaurantModel.find({});
 
     res.status(200).json({restaurants});
@@ -33,6 +39,9 @@ const restaurantController = {
  },
  get: async(req, res) => {
   try {
+
+    await connect();
+
     const restaurant = await RestaurantModel.findById(req.params.id);
 
     if(!restaurant) {
@@ -48,6 +57,8 @@ const restaurantController = {
 
  delete: async(req, res) => {
   try {
+
+    await connect();
 
     const restaurant = await RestaurantModel.findById(req.params.id);
 
@@ -74,6 +85,9 @@ const restaurantController = {
 
  update: async (req, res) => {
   try {
+
+    await connect();
+
     const id = req.params.id;
 
     const restaurant = {
@@ -102,6 +116,9 @@ const restaurantController = {
 
  add_evaluation: async (req, res) => {
   try {
+    
+    await connect();
+
     const id_restaurant = req.params.id;
 
     const evaluation = {
