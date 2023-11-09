@@ -1,18 +1,18 @@
-const router = require('express').Router();
+const router = require('express').Router()
 
-//Restaurant routes
-const restaurantRouter = require('./restaurant');
+// Restaurant routes
+const restaurantRouter = require('./restaurant')
 
-router.use("/", restaurantRouter);
+router.use('/', restaurantRouter)
 
-//User routes
-const userRouter = require('./user');
+// User routes
+const userRouter = require('./user')
 
-router.use("/", userRouter);
+router.use('/', userRouter)
 
-//Evaluation routes
-const evaluationRouter = require('./evaluation');
+// Evaluation routes
+const evaluationRouter = require('./evaluation')
 
-router.use("/", evaluationRouter);
+router.use('/', evaluationRouter)
 
-module.exports = router;
+module.exports = router

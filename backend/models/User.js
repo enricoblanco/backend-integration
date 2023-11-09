@@ -1,29 +1,29 @@
-const mongoose = require('mongoose');
-const { restaurantSchema } = require('./Restaurant');
+const mongoose = require('mongoose')
+const { restaurantSchema } = require('./Restaurant')
 
-const {Schema} = mongoose;
+const { Schema } = mongoose
 
 const userSchema = new Schema({
-  name : {
+  name: {
     type: String,
-    required: true,
+    required: true
   },
-  email :  {
+  email: {
     type: String,
-    required: true,
+    required: true
   },
-  password :  {
+  password: {
     type: String,
-    required: true,
+    required: true
   },
-  visited_restaurants : {
+  visited_restaurants: {
     type: [restaurantSchema],
     required: false
-    },
-}, 
-  {timestamps: true}
-);
+  }
+},
+{ timestamps: true }
+)
 
-const User = mongoose.models.User || mongoose.model('User', userSchema);
+const User = mongoose.models.User || mongoose.model('User', userSchema)
 
-module.exports = {User, userSchema};
+module.exports = { User, userSchema }

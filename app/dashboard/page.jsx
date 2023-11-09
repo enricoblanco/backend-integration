@@ -3,13 +3,12 @@ import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 
 const Dashboard = () => {
-
   const session = getServerSession()
 
-  if(!session){
+  if (!session) {
     redirect('/')
   }
-  return(
+  return (
     <div className='flex items-center'>Dashboards</div>
   )
 }
