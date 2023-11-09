@@ -1,29 +1,29 @@
-const router = require('express').Router();
+const router = require('express').Router()
 
-const userController = require('../controllers/userController');
-
-router
-    .route("/user")
-    .post((req, res) => userController.create(req, res))
+const userController = require('../controllers/userController')
 
 router
-    .route("/user")
-    .get((req, res) => userController.getAll(req, res))
+  .route('/user')
+  .post((req, res) => userController.create(req, res))
 
 router
-    .route("/user/:id")
-    .get((req, res) => userController.get(req, res))
+  .route('/user')
+  .get((req, res) => userController.getAll(req, res))
 
 router
-    .route("/user/:id")
-    .delete((req, res) => userController.delete(req, res))
+  .route('/user/:id')
+  .get((req, res) => userController.get(req, res))
 
 router
-    .route("/user/:id")
-    .put((req, res) => userController.update(req, res))
+  .route('/user/:id')
+  .delete((req, res) => userController.delete(req, res))
 
 router
-    .route("/user/visited_restaurant/:id")
-    .put((req, res) => userController.visit_restaurant(req, res))
+  .route('/user/:id')
+  .put((req, res) => userController.update(req, res))
 
-module.exports = router;
+router
+  .route('/user/visited_restaurant/:id')
+  .put((req, res) => userController.visit_restaurant(req, res))
+
+module.exports = router

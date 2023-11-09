@@ -4,9 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { signOut, useSession } from 'next-auth/react'
 
-
 export const Navbar = () => {
-
   const { data: session } = useSession()
 
   return (
@@ -22,17 +20,19 @@ export const Navbar = () => {
             <li>Dashboard</li>
           </Link>
 
-          {session ? (
+          {session
+            ? (
             <>
-             
+
                 <li>{session.user.name}</li>
                 <li>
-                <button onClick={()=> signOut()}>
+                <button onClick={() => signOut()}>
                   Logout
                 </button>
                 </li>
             </>
-          ):(
+              )
+            : (
             <>
               <Link href="/login">
                 <li>Login</li>
@@ -41,7 +41,7 @@ export const Navbar = () => {
                 <li>SignUp</li>
               </Link>
             </>
-          )}
+              )}
         </div>
       </ul>
     </div>

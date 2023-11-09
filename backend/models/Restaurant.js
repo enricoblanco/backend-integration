@@ -1,44 +1,43 @@
-const mongoose = require('mongoose');
-const { evaluationSchema } = require('./Evaluation');
+const mongoose = require('mongoose')
+const { evaluationSchema } = require('./Evaluation')
 
-
-const { Schema } = mongoose;
+const { Schema } = mongoose
 
 const restaurantSchema = new Schema({
-  name:  {
+  name: {
     type: String,
-    required: true,
+    required: true
   },
-  desc:  {
+  desc: {
     type: String,
-    required: false,
+    required: false
   },
-  image:  {
+  image: {
     type: String,
-    required: false,
+    required: false
   },
-  address:  {
+  address: {
     type: String,
-    required: true,
+    required: true
   },
-  cuisine:  {
+  cuisine: {
     type: String,
-    required: true,
+    required: true
   },
-  rating:  {
+  rating: {
     type: Number,
-    required: true,
+    required: true
   },
-  price_range:  {
+  price_range: {
     type: Number,
-    required: false,
+    required: false
   },
   evaluations: {
     type: [evaluationSchema],
     required: false
-  },
-}, { timestamps: true });
+  }
+}, { timestamps: true })
 
-const Restaurant = mongoose.models.Restaurant || mongoose.model('Restaurant', restaurantSchema);
+const Restaurant = mongoose.models.Restaurant || mongoose.model('Restaurant', restaurantSchema)
 
-module.exports = { Restaurant, restaurantSchema };
+module.exports = { Restaurant, restaurantSchema }

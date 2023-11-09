@@ -1,35 +1,32 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const {Schema} = mongoose;
-
+const { Schema } = mongoose
 
 const evaluationSchema = new Schema({
-  user_id :  {
-    type: String,
-    required: true,
-  },
-  restaurant_id : {
+  user_id: {
     type: String,
     required: true
-    },
-  rating :  {
-    type: Number,
-    required: true,
   },
-  comment :  {
+  restaurant_id: {
     type: String,
-    required: false,
+    required: true
   },
-  date :  {
+  rating: {
+    type: Number,
+    required: true
+  },
+  comment: {
+    type: String,
+    required: false
+  },
+  date: {
     type: Date,
-    required: true,
-  },
+    required: true
+  }
 },
-  {timestamps: true}
-);
+{ timestamps: true }
+)
 
+const Evaluation = mongoose.models.Evaluation || mongoose.model('Evaluation', evaluationSchema)
 
-
-const Evaluation = mongoose.models.Evaluation || mongoose.model('Evaluation', evaluationSchema);
-
-module.exports = {Evaluation, evaluationSchema};
+module.exports = { Evaluation, evaluationSchema }
